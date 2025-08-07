@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ریئل ٹائم چیٹ</title>
+    <link rel="stylesheet" href="style.css">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.gstatic.com https://cdn.jsdelivr.net 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline';">
+</head>
+<body>
+    <div id="chat-application-container">
+        <header>
+            <h1>ریئل ٹائم چیٹ</h1>
+            <div id="user-id" class="ltr-text">...</div>
+        </header>
+
+        <main id="chat-messages-display">
+            <div id="loading-indicator">
+                <p>چیٹ سے منسلک ہو رہا ہے...</p>
+            </div>
+            </main>
+
+        <footer>
+            <form id="message-form">
+                <input type="text" id="message-input" name="message" placeholder="اپنا پیغام ٹائپ کریں..." required autocomplete="off" dir="rtl">
+
+                <button type="submit" id="send-message-button">
+                    بھیجیں
+                </button>
+            </form>
+        </footer>
+    </div>
+    
+    <script src="script.js" type="module"></script>
+</body>
+</html>
