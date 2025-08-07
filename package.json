@@ -1,0 +1,9 @@
+{
+  "name": "live-chatting-app",
+  "version": "1.0.0",
+  "description": "A real-time chat application powered by Firebase and Netlify Functions.",
+  "main": "index.js",
+  "dependencies": {
+    "firebase-admin": "^11.6.0"
+  }
+}
