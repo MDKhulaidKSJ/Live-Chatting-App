@@ -1,0 +1,328 @@
+/* General Styles */
+/*
+ * یہ سیکشن بنیادی سٹائلز فراہم کرتا ہے جو پوری ایپلیکیشن پر لاگو ہوتے ہیں۔
+ * اس میں فونٹ فیملی، باکس ماڈلنگ، اور باڈی کا بیک گراؤنڈ شامل ہے۔
+ */
+body {
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; /* صاف اور پڑھنے کے قابل فونٹ فیملی */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* تمام عناصر کے لیے باکس سائزنگ کو بارڈر-باکس پر سیٹ کریں */
+    background-color: #e6eaf0; /* ہلکا نیلگوں گرے بیک گراؤنڈ */
+    display: flex; /* مرکزی کنٹینر کو مرکز میں لانے کے لیے فلیکس باکس */
+    justify-content: center; /* افقی طور پر مرکز */
+    align-items: center; /* عمودی طور پر مرکز */
+    min-height: 100vh; /* کم از کم پوری ویوپورٹ اونچائی */
+    direction: rtl; /* HTML میں dir="rtl" کے مطابق ڈیفالٹ ٹیکسٹ ڈائریکشن */
+    text-align: right; /* عام ٹیکسٹ کو دائیں طرف الائن کریں */
+    overflow: hidden; /* باڈی پر اوورفلو کو چھپائیں تاکہ کوئی غیر ضروری اسکرول بار نہ آئے */
+}
+
+/* Chat Application Container */
+/*
+ * یہ مرکزی کنٹینر ہے جو پوری چیٹ ایپلیکیشن کو اپنے اندر رکھتا ہے۔
+ * اس کی چوڑائی، اونچائی، شیڈو، اور فلیکس باکس پراپرٹیز یہاں سیٹ کی گئی ہیں۔
+ */
+#chat-application-container {
+    width: 100%; /* موبائل کے لیے پوری چوڑائی */
+    max-width: 650px; /* ڈیسک ٹاپ پر زیادہ سے زیادہ چوڑائی بڑھا دی گئی */
+    height: 90vh; /* ویوپورٹ کی اونچائی کا 90% */
+    background-color: #ffffff; /* سفید بیک گراؤنڈ */
+    border-radius: 18px; /* مزید گول کنارے */
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18); /* گہرا اور پھیلا ہوا شیڈو */
+    overflow: hidden; /* کنٹینر کے اندر کے مواد کو چھپائیں جو زیادہ ہو */
+    display: flex; /* ہیڈر، مین، اور فوٹر کے لیے فلیکس باکس */
+    flex-direction: column; /* عمودی لے آؤٹ */
+    border: 1px solid #dcdcdc; /* ہلکا بارڈر */
+    animation: fadeIn 0.8s ease-out forwards; /* کنٹینر کے ظاہر ہونے پر فیڈ ان اینیمیشن */
+}
+
+/* Keyframe for fadeIn animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Header */
+/*
+ * ہیڈر سیکشن کی سٹائلنگ، جس میں عنوان اور ممکنہ طور پر یوزر آئی ڈی شامل ہے۔
+ */
+header {
+    background: linear-gradient(to right, #4a90e2, #6a5acd); /* نیلے سے جامنی رنگ کا گریڈیئنٹ */
+    color: white; /* سفید ٹیکسٹ */
+    padding: 18px 25px; /* اندرونی پیڈنگ بڑھا دی گئی */
+    text-align: center; /* ٹیکسٹ کو مرکز میں الائن کریں */
+    font-size: 1.7em; /* فونٹ کا سائز */
+    font-weight: 700; /* فونٹ کا وزن بڑھا دیا گیا */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* ہلکا سفید بارڈر */
+    display: flex; /* ہیڈر کے اندر عناصر کو الائن کرنے کے لیے فلیکس باکس */
+    justify-content: space-between; /* عناصر کے درمیان جگہ */
+    align-items: center; /* عمودی طور پر مرکز */
+    border-radius: 18px 18px 0 0; /* اوپر کے کونوں کو گول کریں */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* ہلکا شیڈو */
+}
+
+header h1 {
+    margin: 0; /* ہیڈنگ کا مارجن ہٹائیں */
+    font-size: 1.9em; /* عنوان کا فونٹ سائز بڑھا دیا گیا */
+    letter-spacing: 0.5px; /* حروف کے درمیان جگہ */
+}
+
+/* User ID Display in Header */
+header div {
+    font-size: 0.9em; /* یوزر آئی ڈی کا فونٹ سائز */
+    opacity: 0.9; /* ہلکا ٹرانسپیرنٹ */
+}
+
+/* Chat Messages Display Area */
+/*
+ * یہ وہ علاقہ ہے جہاں تمام چیٹ پیغامات دکھائے جاتے ہیں۔
+ * یہ اسکرول ایبل ہے اور پیغامات کے درمیان جگہ فراہم کرتا ہے۔
+ */
+#chat-messages-display {
+    flex-grow: 1; /* باقی جگہ کو بھرنے کے لیے بڑھیں */
+    padding: 20px; /* اندرونی پیڈنگ */
+    overflow-y: auto; /* عمودی اسکرولنگ فعال کریں */
+    background-color: #f5f7fa; /* ہلکا نیلگوں گرے بیک گراؤنڈ */
+    display: flex; /* پیغامات کے لیے فلیکس باکس */
+    flex-direction: column; /* پیغامات کو عمودی طور پر اسٹیک کریں */
+    gap: 12px; /* پیغامات کے درمیان جگہ بڑھا دی گئی */
+    scroll-behavior: smooth; /* ہموار اسکرولنگ */
+}
+
+/* Custom Scrollbar Styles */
+/*
+ * چیٹ ونڈو کے لیے کسٹم اسکرول بار۔
+ */
+#chat-messages-display::-webkit-scrollbar {
+    width: 8px;
+}
+
+#chat-messages-display::-webkit-scrollbar-track {
+    background: #e0e6ed; /* ٹریک کا رنگ */
+    border-radius: 10px;
+}
+
+#chat-messages-display::-webkit-scrollbar-thumb {
+    background: #aab8c2; /* تھمب کا رنگ */
+    border-radius: 10px;
+    transition: background 0.3s ease;
+}
+
+#chat-messages-display::-webkit-scrollbar-thumb:hover {
+    background: #8899a6; /* ہوور پر تھمب کا رنگ */
+}
+
+/* Message Styles */
+/*
+ * یہ سیکشن آنے والے اور جانے والے دونوں پیغامات کے لیے بنیادی سٹائلز فراہم کرتا ہے۔
+ */
+.message {
+    display: flex; /* پیغام کے مواد کو الائن کرنے کے لیے فلیکس باکس */
+    max-width: 85%; /* پیغام کی زیادہ سے زیادہ چوڑائی بڑھا دی گئی */
+    animation: slideIn 0.3s ease-out forwards; /* پیغامات کے ظاہر ہونے پر سلائیڈ ان اینیمیشن */
+    opacity: 0; /* ابتدائی طور پر چھپائیں */
+}
+
+/* Keyframe for slideIn animation */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.message > div {
+    padding: 14px 20px; /* پیغام کے بلبلے کی پیڈنگ بڑھا دی گئی */
+    border-radius: 20px; /* مزید گول کنارے */
+    word-wrap: break-word; /* لمبے الفاظ کو توڑیں */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* ہلکا شیڈو */
+    line-height: 1.5; /* لائن کی اونچائی بڑھا دی گئی */
+    font-size: 1.05em; /* فونٹ سائز بڑھا دیا گیا */
+}
+
+.sender-name {
+    font-weight: 700; /* بھیجنے والے کے نام کا فونٹ وزن بڑھا دیا گیا */
+    font-size: 0.95em; /* بھیجنے والے کے نام کا فونٹ سائز */
+    margin-bottom: 6px; /* نام اور پیغام کے درمیان جگہ بڑھا دی گئی */
+    display: block; /* نام کو ایک نئی لائن پر رکھیں */
+    color: #444; /* نام کا رنگ */
+    opacity: 0.9;
+}
+
+.message-content {
+    margin: 0; /* پیغام کے مواد کا مارجن ہٹائیں */
+    font-size: 1em; /* پیغام کے مواد کا فونٹ سائز */
+}
+
+/* Incoming Messages (Right-aligned for RTL) */
+/*
+ * یہ ان پیغامات کے لیے سٹائلز ہیں جو دوسرے صارفین سے آتے ہیں۔
+ * RTL لے آؤٹ کے لیے، یہ دائیں طرف الائن ہوتے ہیں۔
+ */
+.incoming-message {
+    justify-content: flex-end; /* RTL میں دائیں طرف الائن کریں */
+}
+
+.incoming-message > div {
+    background-color: #e0e6ed; /* ہلکا گرے/نیلگوں بیک گراؤنڈ */
+    color: #333333; /* گہرا ٹیکسٹ رنگ */
+    border-radius: 20px 20px 0 20px; /* RTL کے لیے مخصوص بارڈر ریڈیئس */
+}
+
+/* Outgoing Messages (Left-aligned for RTL) */
+/*
+ * یہ ان پیغامات کے لیے سٹائلز ہیں جو موجودہ صارف بھیجتا ہے۔
+ * RTL لے آؤٹ کے لیے، یہ بائیں طرف الائن ہوتے ہیں۔
+ */
+.outgoing-message {
+    justify-content: flex-start; /* RTL میں بائیں طرف الائن کریں */
+}
+
+.outgoing-message > div {
+    background-color: #4a90e2; /* نیلے رنگ کا بیک گراؤنڈ */
+    color: white; /* سفید ٹیکسٹ رنگ */
+    border-radius: 20px 20px 20px 0; /* RTL کے لیے مخصوص بارڈر ریڈیئس */
+}
+
+/* Footer (Message Input Area) */
+/*
+ * فوٹر سیکشن کی سٹائلنگ، جس میں پیغام کا ان پٹ فیلڈ اور بھیجنے کا بٹن شامل ہے۔
+ */
+footer {
+    padding: 18px 25px; /* اندرونی پیڈنگ بڑھا دی گئی */
+    background-color: #f0f2f5; /* ہلکا گرے بیک گراؤنڈ */
+    border-top: 1px solid #e0e0e0; /* اوپر کا بارڈر */
+    display: flex; /* ان پٹ اور بٹن کے لیے فلیکس باکس */
+    gap: 15px; /* عناصر کے درمیان جگہ بڑھا دی گئی */
+    border-radius: 0 0 18px 18px; /* نیچے کے کونوں کو گول کریں */
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.05); /* ہلکا شیڈو */
+}
+
+/* Message Input Field */
+/*
+ * پیغام ٹائپ کرنے والے ان پٹ فیلڈ کی سٹائلنگ۔
+ */
+#message-input {
+    flex-grow: 1; /* باقی جگہ کو بھرنے کے لیے بڑھیں */
+    padding: 14px 18px; /* اندرونی پیڈنگ بڑھا دی گئی */
+    border: 1px solid #cccccc; /* بارڈر */
+    border-radius: 28px; /* مزید گول کنارے */
+    font-size: 1.05em; /* فونٹ سائز بڑھا دیا گیا */
+    outline: none; /* فوکس پر آؤٹ لائن ہٹائیں */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* ہموار ٹرانزیشن */
+    text-align: right; /* RTL کے لیے ٹیکسٹ کو دائیں طرف الائن کریں */
+    padding-right: 18px; /* RTL کے لیے دائیں طرف پیڈنگ */
+    padding-left: 15px; /* RTL کے لیے بائیں طرف پیڈنگ */
+}
+
+#message-input:focus {
+    border-color: #4a90e2; /* فوکس پر بارڈر کا رنگ تبدیل کریں */
+    box-shadow: 0 0 0 4px rgba(74, 144, 226, 0.25); /* فوکس پر شیڈو */
+}
+
+/* Send Button */
+/*
+ * پیغام بھیجنے والے بٹن کی سٹائلنگ۔
+ */
+#send-message-button {
+    background: linear-gradient(to right, #4a90e2, #6a5acd); /* نیلے سے جامنی رنگ کا گریڈیئنٹ */
+    color: white; /* سفید ٹیکسٹ */
+    padding: 14px 28px; /* اندرونی پیڈنگ بڑھا دی گئی */
+    border: none; /* بارڈر ہٹائیں */
+    border-radius: 28px; /* مزید گول کنارے */
+    font-size: 1.05em; /* فونٹ سائز بڑھا دیا گیا */
+    font-weight: 600; /* فونٹ کا وزن */
+    cursor: pointer; /* کرسر کو پوائنٹر میں تبدیل کریں */
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; /* ہموار ٹرانزیشن */
+    outline: none; /* فوکس پر آؤٹ لائن ہٹائیں */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* ہلکا شیڈو */
+}
+
+#send-message-button:hover {
+    background: linear-gradient(to right, #3a7bd5, #5a4acb); /* ہوور پر گہرا گریڈیئنٹ */
+    transform: translateY(-2px); /* ہوور پر ہلکا سا اوپر اٹھائیں */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* ہوور پر شیڈو بڑھا دیں */
+}
+
+#send-message-button:active {
+    background: linear-gradient(to right, #2a69c0, #4a3ab6); /* کلک پر مزید گہرا */
+    transform: translateY(0); /* کلک پر اپنی اصلی پوزیشن پر واپس آئیں */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15); /* کلک پر شیڈو کم کریں */
+}
+
+/* Responsive Adjustments */
+/*
+ * میڈیا کویریز کا استعمال کرتے ہوئے چھوٹے سکرینز کے لیے سٹائلز کو ایڈجسٹ کریں۔
+ */
+@media (max-width: 768px) {
+    #chat-application-container {
+        height: 100vh; /* چھوٹے سکرینز پر پوری اونچائی */
+        border-radius: 0; /* چھوٹے سکرینز پر گول کنارے ہٹائیں */
+        box-shadow: none; /* چھوٹے سکرینز پر شیڈو ہٹائیں */
+        max-width: 100%; /* چھوٹے سکرینز پر پوری چوڑائی */
+    }
+
+    header {
+        padding: 15px 20px; /* ہیڈر کی پیڈنگ کم کریں */
+        font-size: 1.5em; /* ہیڈر کا فونٹ سائز کم کریں */
+        border-radius: 0; /* اوپر کے کونوں کو گول نہ کریں */
+    }
+
+    header h1 {
+        font-size: 1.6em; /* عنوان کا فونٹ سائز کم کریں */
+    }
+
+    #chat-messages-display {
+        padding: 15px; /* چیٹ ڈسپلے کی پیڈنگ کم کریں */
+        gap: 10px; /* پیغامات کے درمیان جگہ کم کریں */
+    }
+
+    .message > div {
+        padding: 12px 18px; /* پیغام کے بلبلے کی پیڈنگ کم کریں */
+        font-size: 0.95em; /* پیغام کے مواد کا فونٹ سائز کم کریں */
+    }
+
+    .sender-name {
+        font-size: 0.85em; /* بھیجنے والے کے نام کا فونٹ سائز کم کریں */
+    }
+
+    footer {
+        padding: 15px 20px; /* فوٹر کی پیڈنگ کم کریں */
+        flex-direction: column; /* چھوٹے سکرینز پر عمودی لے آؤٹ */
+        gap: 10px; /* عناصر کے درمیان جگہ کم کریں */
+        border-radius: 0; /* نیچے کے کونوں کو گول نہ کریں */
+    }
+
+    #message-input {
+        padding: 12px 15px; /* ان پٹ فیلڈ کی پیڈنگ کم کریں */
+        font-size: 0.95em; /* ان پٹ فیلڈ کا فونٹ سائز کم کریں */
+    }
+
+    #send-message-button {
+        padding: 12px 25px; /* بٹن کی پیڈنگ کم کریں */
+        font-size: 0.95em; /* بٹن کا فونٹ سائز کم کریں */
+        width: 100%; /* بٹن کو پوری چوڑائی دیں */
+        border-radius: 25px; /* بٹن کے کونے کم گول کریں */
+    }
+}
+
+/* LTR Text Specific Styling (for User ID) */
+/*
+ * یہ کلاس خاص طور پر ان عناصر کے لیے ہے جن کا ٹیکسٹ LTR (Left-to-Right) میں ہونا چاہیے،
+ * جبکہ پوری ایپلیکیشن RTL میں ہے۔
+ */
+.ltr-text {
+    direction: ltr;
+    text-align: left;
+}
