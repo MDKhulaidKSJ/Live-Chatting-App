@@ -1,36 +1,176 @@
 <!DOCTYPE html>
-<html lang="ur" dir="rtl">
+<html lang="ur" dir="rtl" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ریئل ٹائم چیٹ</title>
+    <title>MDKhulaidKSJ</title>
+    <meta name="description" content="ایک جدید، فیچر سے بھرپور ریئل ٹائم چیٹ ایپلیکیشن جو بہترین کارکردگی، رسائی اور صارف کے تجربے کے لیے بنائی گئی ہے۔">
+    <meta name="author" content="(MD Khulaid)">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://www.gstatic.com">
+    <link rel="preload" href="style.css" as="style">
+    <link rel="preload" href="app.js" as="script">
+
     <link rel="stylesheet" href="style.css">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.gstatic.com https://cdn.jsdelivr.net 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline';">
+
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <link rel="manifest" href="/app.webmanifest">
+
+    <meta http-equiv="Content-Security-Policy" content="
+        default-src 'self'; 
+        script-src 'self' https://www.gstatic.com https://cdn.jsdelivr.net; 
+        style-src 'self' https://fonts.googleapis.com; 
+        font-src 'self' https://fonts.gstatic.com;
+        img-src 'self' data: https://images.unsplash.com https://placehold.co;
+        connect-src 'self' https://firestore.googleapis.com wss://your-webrtc-server.com;
+        form-action 'self';
+        object-src 'none';
+        base-uri 'self';
+        frame-ancestors 'none';
+    ">
 </head>
 <body>
-    <div id="chat-application-container">
-        <header>
-            <h1>ریئل ٹائم چیٹ</h1>
-            <div id="user-id" class="ltr-text">...</div>
-        </header>
 
-        <main id="chat-messages-display">
-            <div id="loading-indicator">
-                <p>چیٹ سے منسلک ہو رہا ہے...</p>
-            </div>
-            </main>
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+        <symbol id="icon-send" viewBox="0 0 24 24"><path d="M22 2L11 13M22 2L15 22L11 13L2 9L22 2Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+        <symbol id="icon-paperclip" viewBox="0 0 24 24"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></symbol>
+        <symbol id="icon-smile" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" x2="9.01" y1="9" y2="9"/><line x1="15" x2="15.01" y1="9" y2="9"/></symbol>
+        <symbol id="icon-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" x2="16.65" y1="21" y2="16.65"/></symbol>
+        <symbol id="icon-settings" viewBox="0 0 24 24"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.08a2 2 0 0 1 1 1.74v.18a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l-.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></symbol>
+        <symbol id="icon-reply" viewBox="0 0 24 24"><polyline points="9 17 4 12 9 7"/><path d="M20 18v-2a4 4 0 0 0-4-4H4"/></symbol>
+        <symbol id="icon-close" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></symbol>
+        <symbol id="icon-plus" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></symbol>
+        <symbol id="icon-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></symbol>
+        <symbol id="icon-double-check" viewBox="0 0 24 24"><path d="M7 13l3 3 7-7"/><path d="M2 13l3 3 7-7"/></symbol>
+        <symbol id="icon-menu" viewBox="0 0 24 24"><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></symbol>
+    </svg>
 
-        <footer>
-            <form id="message-form">
-                <input type="text" id="message-input" name="message" placeholder="اپنا پیغام ٹائپ کریں..." required autocomplete="off" dir="rtl">
-
-                <button type="submit" id="send-message-button">
-                    بھیجیں
+    <div class="chat-app" id="chat-app" role="application" aria-label="چیٹ ایپلیکیشن">
+        
+        <aside class="chat-app__sidebar" id="sidebar">
+            <header class="sidebar__header">
+                <input type="search" class="sidebar__search" id="chat-search" placeholder="چیٹ یا رابطے تلاش کریں..." aria-label="چیٹ تلاش کریں">
+                <button class="sidebar__add-chat-btn" aria-label="نئی چیٹ شامل کریں">
+                    <svg width="24" height="24"><use href="#icon-plus"></use></svg>
                 </button>
-            </form>
-        </footer>
+            </header>
+            
+            <nav class="sidebar__nav" aria-label="چیٹ کی فہرست">
+                <ul class="chat-list" id="chat-list" role="list">
+                    <!-- چیٹ لسٹ آئٹمز یہاں JavaScript کے ذریعے لوڈ ہوں گے -->
+                </ul>
+            </nav>
+        </aside>
+
+        <div class="chat-app__main">
+            <header class="chat-header" role="banner">
+                <!-- نیا سائیڈبار ٹوگل بٹن -->
+                <button class="icon-btn" aria-label="سائیڈبار ٹوگل کریں" id="sidebar-toggle-button">
+                    <svg width="24" height="24"><use href="#icon-menu"></use></svg>
+                </button>
+                
+                <div class="chat-header__info">
+                    <img src="https://placehold.co/100x100/aabbcc/ffffff?text=User" alt="پروفائل امیج" class="chat-header__avatar" id="chat-header-avatar">
+                    <div>
+                        <h2 class="chat-header__name" id="chat-header-name">چیٹ منتخب کریں</h2>
+                        <span class="chat-header__status chat-header__status--offline" id="chat-header-status">آف لائن</span>
+                    </div>
+                </div>
+                <div class="chat-header__actions">
+                    <button class="icon-btn" aria-label="سیٹنگز کھولیں" id="settings-toggle">
+                        <svg width="24" height="24"><use href="#icon-settings"></use></svg>
+                    </button>
+                </div>
+            </header>
+
+            <main class="chat-messages" id="chat-messages-display" role="log" aria-live="polite" aria-atomic="false">
+                
+                <div class="loading-indicator" id="loading-indicator">
+                    <p>چیٹ لوڈ ہو رہی ہے...</p>
+                </div>
+                
+                <!-- پیغامات یہاں JavaScript کے ذریعے لوڈ ہوں گے -->
+                
+            </main>
+            
+            <div class="typing-indicator" id="typing-indicator" aria-live="assertive" hidden>
+                <span class="typing-indicator__dot"></span>
+                <span class="typing-indicator__dot"></span>
+                <span class="typing-indicator__dot"></span>
+                <span id="typing-username"></span> ٹائپ کر رہا ہے...
+            </div>
+
+            <footer class="chat-composer" role="form" aria-label="پیغام کمپوزر">
+                <form id="message-form" class="composer-form">
+                    <div class="file-preview" id="file-preview" hidden>
+                        <span id="file-preview-name">filename.pdf</span>
+                        <button type="button" class="icon-btn" id="remove-file-preview" aria-label="فائل ہٹائیں">
+                            <svg width="16" height="16"><use href="#icon-close"></use></svg>
+                        </button>
+                    </div>
+
+                    <div class="composer-main">
+                        <button type="button" class="icon-btn composer__btn" id="attach-file-btn" aria-label="فائل اٹیچ کریں">
+                            <svg width="24" height="24"><use href="#icon-paperclip"></use></svg>
+                        </button>
+                        <input type="file" id="file-input" hidden multiple>
+                        
+                        <div class="rich-text-editor" 
+                             id="message-input" 
+                             contenteditable="true" 
+                             role="textbox" 
+                             aria-multiline="true" 
+                             aria-label="پیغام ٹائپ کریں"
+                             data-placeholder="اپنا پیغام ٹائپ کریں...">
+                        </div>
+
+                        <button type="button" class="icon-btn composer__btn" id="emoji-btn" aria-label="ایموجی شامل کریں">
+                             <svg width="24" height="24"><use href="#icon-smile"></use></svg>
+                        </button>
+
+                        <button type="submit" class="send-btn" id="send-message-btn" aria-label="پیغام بھیجیں">
+                            <svg width="24" height="24"><use href="#icon-send"></use></svg>
+                        </button>
+                    </div>
+                </form>
+            </footer>
+        </div>
     </div>
-    
-    <script src="script.js" type="module"></script>
+
+    <div class="modal" id="settings-modal" role="dialog" aria-modal="true" aria-labelledby="settings-title" hidden>
+        <div class="modal__overlay" tabindex="-1"></div>
+        <div class="modal__content">
+            <header class="modal__header">
+                <h2 id="settings-title" class="modal__title">ایپلیکیشن سیٹنگز</h2>
+                <button class="icon-btn modal__close-btn" id="settings-close-btn" aria-label="سیٹنگز بند کریں">
+                    <svg width="24" height="24"><use href="#icon-close"></use></svg>
+                </button>
+            </header>
+            <main class="modal__body">
+                <div class="setting-item">
+                    <label for="theme-switcher">تھیم منتخب کریں:</label>
+                    <select id="theme-switcher">
+                        <option value="light">لائٹ تھیم</option>
+                        <option value="dark">ڈارک تھیم</option>
+                    </select>
+                </div>
+                <div class="setting-item">
+                    <label for="notification-toggle">ڈیسک ٹاپ نوٹیفیکیشنز:</label>
+                    <input type="checkbox" id="notification-toggle" role="switch" checked>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <div id="toast-container" class="toast-container" role="status" aria-live="polite">
+        </div>
+    <script src="app.js" type="module"></script>
 </body>
 </html>
